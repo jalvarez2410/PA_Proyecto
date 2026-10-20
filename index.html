@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Proyecto Final | Finanzas - S&P 500</title>
+  <style>
+    :root {
+      --fondo: #f4f7fb;
+      --panel: #ffffff;
+      --principal: #153e75;
+      --secundario: #2563a6;
+      --texto: #1f2937;
+      --suave: #64748b;
+      --borde: #dbe3ee;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--fondo);
+      color: var(--texto);
+      line-height: 1.55;
+    }
+    header {
+      background: var(--principal);
+      color: white;
+      padding: 28px 22px;
+    }
+    header .contenedor, main, footer {
+      max-width: 1150px;
+      margin: auto;
+    }
+    header h1 { margin: 0 0 8px; font-size: clamp(1.5rem, 3vw, 2.2rem); }
+    header p { margin: 4px 0; color: #e7eef9; }
+    .etiqueta {
+      display: inline-block;
+      margin-top: 12px;
+      padding: 5px 10px;
+      border: 1px solid #9fb8da;
+      border-radius: 20px;
+      font-size: .85rem;
+    }
+    main { padding: 22px; }
+    .aviso {
+      background: #fff8e6;
+      border-left: 4px solid #e3a008;
+      padding: 12px 15px;
+      border-radius: 5px;
+      margin-bottom: 18px;
+    }
+    .layout {
+      display: grid;
+      grid-template-columns: 245px minmax(0, 1fr);
+      gap: 20px;
+      align-items: start;
+    }
+    nav {
+      background: var(--panel);
+      border: 1px solid var(--borde);
+      border-radius: 10px;
+      padding: 12px;
+      position: sticky;
+      top: 12px;
+    }
+    nav h2 { font-size: 1rem; margin: 6px 8px 10px; color: var(--principal); }
+    nav button {
+      display: block;
+      width: 100%;
+      text-align: left;
+      border: 0;
+      border-radius: 6px;
+      background: transparent;
+      color: var(--texto);
+      padding: 10px;
+      margin: 2px 0;
+      cursor: pointer;
+      font-size: .94rem;
+    }
+    nav button:hover { background: #edf4fc; }
+    nav button.activo { background: var(--principal); color: white; }
+    .contenido {
+      background: var(--panel);
+      border: 1px solid var(--borde);
+      border-radius: 10px;
+      padding: clamp(18px, 3vw, 30px);
+      min-height: 440px;
+      box-shadow: 0 3px 12px rgba(20, 45, 80, .04);
+    }
+    .contenido h2 { color: var(--principal); margin-top: 0; }
+    .contenido h3 { margin-top: 24px; color: var(--secundario); }
+    .pendiente {
+      background: #f8fafc;
+      border: 1px dashed #b7c5d8;
+      border-radius: 8px;
+      padding: 14px;
+      color: var(--suave);
+    }
+    .tarjetas {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+      gap: 12px;
+      margin: 18px 0;
+    }
+    .tarjeta {
+      border: 1px solid var(--borde);
+      border-radius: 8px;
+      padding: 14px;
+      background: #fbfdff;
+    }
+    .tarjeta strong { display: block; color: var(--principal); margin-bottom: 5px; }
+    ul { padding-left: 22px; }
+    .pie-modulo {
+      margin-top: 28px;
+      padding-top: 16px;
+      border-top: 1px solid var(--borde);
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+    }
+    .pie-modulo button {
+      background: var(--secundario);
+      color: white;
+      border: 0;
+      border-radius: 6px;
+      padding: 10px 14px;
+      cursor: pointer;
+    }
+    .pie-modulo button:disabled { background: #cbd5e1; cursor: not-allowed; }
+    footer { padding: 0 22px 24px; color: var(--suave); font-size: .85rem; }
+    @media (max-width: 760px) {
+      .layout { grid-template-columns: 1fr; }
+      nav { position: static; }
+      nav .lista { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 3px; }
+      nav button { font-size: .85rem; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="contenedor">
+      <h1>Análisis financiero de acciones del S&amp;P 500</h1>
+      <p>Proyecto final de Programación Avanzada · Ingeniería en Ciencia de Datos y Analítica</p>
+      <p>Exploración de rendimientos, similitud, riesgo y optimización de portafolios.</p>
+      <span class="etiqueta">Versión inicial · Esqueleto de navegación</span>
+    </div>
+  </header>
+
+  <main>
+    <div class="aviso">
+      <strong>Nota:</strong> esta es la estructura inicial de la aplicación. Los resultados, gráficos,
+      cálculos e interacciones de cada módulo se incorporarán conforme se desarrolle el análisis en Python.
+    </div>
+
+    <div class="layout">
+      <nav aria-label="Navegación de módulos">
+        <h2>Contenido del proyecto</h2>
+        <div class="lista" id="lista-navegacion">
+          <button class="activo" data-seccion="inicio">Inicio</button>
+          <button data-seccion="m1">M1. Probabilidad</button>
+          <button data-seccion="m2">M2. Variables y momentos</button>
+          <button data-seccion="m3">M3. Independencia y correlación</button>
+          <button data-seccion="m4">M4. Regresión y Poisson</button>
+          <button data-seccion="m5">M5. Similitud y distancia</button>
+          <button data-seccion="m6">M6. Reducción de dimensiones</button>
+          <button data-seccion="m7">M7. Simulación</button>
+          <button data-seccion="m8">M8. Análisis de sesgos</button>
+          <button data-seccion="m9">M9. Optimización lineal</button>
+          <button data-seccion="m10">M10. Optimización avanzada</button>
+          <button data-seccion="m11">M11. Optimización multiobjetivo</button>
+          <button data-seccion="pruebas">Pruebas y créditos</button>
+        </div>
+      </nav>
+
+      <section class="contenido" id="contenido" aria-live="polite">
+        <!-- El contenido se genera con JavaScript según la sección seleccionada. -->
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    Proyecto académico. Las salidas se interpretarán con fines educativos y no constituyen asesoría de inversión.
+  </footer>
+
+  <script>
+    const secciones = {
+      inicio: {
+        titulo: "Inicio del proyecto",
+        descripcion: "Análisis de datos bursátiles para estudiar el comportamiento y el riesgo de acciones del S&P 500.",
+        html: `
+          <h3>Pregunta central</h3>
+          <p>¿Cómo se relacionan las acciones del portafolio y cuál es su riesgo?</p>
+          <div class="tarjetas">
+            <div class="tarjeta"><strong>Dataset</strong>Archivo CSV con precios diarios de acciones.</div>
+            <div class="tarjeta"><strong>Periodo</strong>2013–2018, según las fechas disponibles en el archivo.</div>
+            <div class="tarjeta"><strong>Herramientas</strong>Python, Google Colab, HTML, CSS y JavaScript.</div>
+          </div>
+          <h3>Propósito</h3>
+          <p>Transformar los precios históricos en rendimientos para estudiar probabilidades, relaciones entre acciones,
+          factores de mercado, escenarios de riesgo y alternativas de asignación de un portafolio.</p>
+          <h3>Estado de desarrollo</h3>
+          <div class="pendiente">Estructura de navegación creada. Los resultados reales y las visualizaciones se agregarán
+          después de ejecutar y validar los análisis en Python.</div>`
+      },
+      m1: {
+        titulo: "M1. Fundamentos de probabilidad",
+        descripcion: "Probabilidades de comportamiento diario de los rendimientos.",
+        html: `<ul><li>Probabilidad de que el rendimiento diario sea positivo.</li><li>Probabilidad de una caída superior al 2 %.</li><li>Probabilidad de que una acción suba hoy dado que subió el día anterior.</li><li>Probabilidades conjuntas entre dos acciones.</li></ul>
+        <div class="pendiente">Pendiente: tablas de probabilidades y calculadora interactiva con datos reales.</div>`
+      },
+      m2: {
+        titulo: "M2. Variables aleatorias y momentos",
+        descripcion: "Descripción estadística de los rendimientos diarios.",
+        html: `<ul><li>Media y varianza.</li><li>Asimetría y curtosis.</li><li>Comparación con la distribución normal y gráfico Q-Q.</li><li>Volatilidad anualizada.</li></ul>
+        <div class="pendiente">Pendiente: resumen estadístico, histogramas y gráfico Q-Q.</div>`
+      },
+      m3: {
+        titulo: "M3. Independencia y correlación",
+        descripcion: "Evaluación de las relaciones entre los rendimientos de las acciones.",
+        html: `<ul><li>Matriz de correlación de Pearson y Spearman.</li><li>Correlación móvil.</li><li>Prueba chi-cuadrado para las categorías sube/baja de dos acciones.</li><li>Autocorrelación de los rendimientos.</li></ul>
+        <div class="pendiente">Pendiente: mapas de calor, resultados de pruebas e interpretación.</div>`
+      },
+      m4: {
+        titulo: "M4. Regresión y distribución de Poisson",
+        descripcion: "Estimación de la sensibilidad de las acciones frente al mercado y de la frecuencia de caídas fuertes.",
+        html: `<ul><li>Regresión lineal de cada acción frente a un índice promedio del mercado.</li><li>Estimación e interpretación de beta y R².</li><li>Modelo de Poisson para el número de días por mes con caídas superiores al 2 %.</li><li>Evaluación de bondad de ajuste.</li></ul>
+        <div class="pendiente">Pendiente: resultados de los modelos, diagnósticos y calculadora de Poisson.</div>`
+      },
+      m5: {
+        titulo: "M5. Medidas de similitud y distancia",
+        descripcion: "Identificación de acciones con patrones de rendimiento semejantes.",
+        html: `<ul><li>Similitudes: coseno, Pearson, coseno ajustada y Jaccard.</li><li>Distancias: euclídea, Manhattan y Hamming; implementación de las medidas solicitadas en el curso.</li><li>Jaccard sobre días de subida y Hamming sobre secuencias sube/baja.</li><li>Comparación de las cinco acciones más parecidas según cada medida.</li></ul>
+        <div class="pendiente">Pendiente: matriz de similitud, selector de medida y tabla de acciones similares.</div>`
+      },
+      m6: {
+        titulo: "M6. Reducción de dimensiones",
+        descripcion: "Extracción de factores y visualización de relaciones entre acciones.",
+        html: `<ul><li>Métodos lineales: PCA, SVD, SVD truncada, ICA y NMF.</li><li>Métodos no lineales: t-SNE, UMAP, Isomap, LLE y MDS.</li><li>Varianza explicada por los componentes principales.</li><li>Mapa bidimensional de acciones coloreado por sector, cuando se disponga de esa información.</li></ul>
+        <div class="pendiente">Pendiente: resultados de las diez técnicas y visualizaciones.</div>`
+      },
+      m7: {
+        titulo: "M7. Simulación",
+        descripcion: "Simulación de escenarios financieros y operativos.",
+        html: `<ul><li>Monte Carlo: movimiento browniano geométrico, VaR y CVaR.</li><li>Cadena de Markov: regímenes alcista, lateral y bajista.</li><li>Simulación de eventos discretos: cola de órdenes.</li><li>Dinámica de sistemas: fondo con aportes y retiros.</li><li>Simulación basada en agentes: inversionistas fundamentalistas y seguidores de tendencia.</li></ul>
+        <div class="pendiente">Pendiente: parámetros ajustables, gráficos y resultados de las simulaciones.</div>`
+      },
+      m8: {
+        titulo: "M8. Análisis de sesgos",
+        descripcion: "Identificación de limitaciones que pueden afectar las conclusiones.",
+        html: `<ul><li>Sesgo de recolección y supervivencia.</li><li>Sesgo de selección asociado al periodo estudiado.</li><li>Sesgo del modelo, por ejemplo, asumir normalidad.</li><li>Sesgo de confirmación.</li><li>Sesgo de interpretación.</li><li>Sesgo algorítmico.</li></ul>
+        <div class="pendiente">Pendiente: evidencia del dataset, impacto potencial y mitigación para cada sesgo.</div>`
+      },
+      m9: {
+        titulo: "M9. Optimización lineal y combinatoria",
+        descripcion: "Construcción de un portafolio sujeto a restricciones.",
+        html: `<ul><li>Maximización del rendimiento esperado con límites por acción y sector.</li><li>Modelo de desviación absoluta media (MAD).</li><li>Comparación de Simplex propio, Gran M, puntos interiores y búsqueda de la esquina.</li><li>Optimización entera mediante ramificación y acotamiento.</li></ul>
+        <div class="pendiente">Pendiente: formulación, restricciones, soluciones verificadas y región factible para dos activos.</div>`
+      },
+      m10: {
+        titulo: "M10. Optimización no lineal, entera y estocástica",
+        descripcion: "Optimización del equilibrio entre rendimiento y riesgo.",
+        html: `<ul><li>Modelo de Markowitz de media-varianza.</li><li>Portafolio de máximo índice de Sharpe.</li><li>Restricción de cardinalidad para limitar el número de acciones.</li><li>Minimización del CVaR con escenarios de Monte Carlo.</li></ul>
+        <div class="pendiente">Pendiente: soluciones, parámetros ajustables y gráficos de las funciones objetivo.</div>`
+      },
+      m11: {
+        titulo: "M11. Optimización multiobjetivo",
+        descripcion: "Comparación entre rendimiento, riesgo y diversificación.",
+        html: `<ul><li>Método de ponderación.</li><li>Método de restricciones ε.</li><li>Frontera de Pareto.</li><li>Escalarización de Chebyshev.</li><li>Programación de compromiso.</li><li>Comparación con un algoritmo genético, como NSGA-II.</li></ul>
+        <div class="pendiente">Pendiente: frontera eficiente, comparación de métodos e hipervolumen.</div>`
+      },
+      pruebas: {
+        titulo: "Pruebas, documentación y créditos",
+        descripcion: "Registro de validaciones y herramientas utilizadas.",
+        html: `<ul><li>Resumen de pruebas automatizadas y cobertura de código.</li><li>Verificación de consistencia entre Python y HTML.</li><li>Versiones de Python y bibliotecas.</li><li>Referencias bibliográficas.</li><li>Declaración y bitácora de uso de herramientas de inteligencia artificial.</li></ul>
+        <div class="pendiente">Pendiente: completar cuando estén implementados y probados los módulos.</div>`
+      }
+    };
+
+    const botones = [...document.querySelectorAll("[data-seccion]")];
+    const contenido = document.getElementById("contenido");
+    const orden = botones.map(b => b.dataset.seccion);
+    let actual = "inicio";
+
+    function mostrarSeccion(id) {
+      actual = id;
+      const seccion = secciones[id];
+      contenido.innerHTML = `
+        <h2>${seccion.titulo}</h2>
+        <p>${seccion.descripcion}</p>
+        ${seccion.html}
+        <div class="pie-modulo">
+          <button id="anterior" ${orden.indexOf(id) === 0 ? "disabled" : ""}>← Anterior</button>
+          <button id="siguiente" ${orden.indexOf(id) === orden.length - 1 ? "disabled" : ""}>Siguiente →</button>
+        </div>`;
+      botones.forEach(b => b.classList.toggle("activo", b.dataset.seccion === id));
+      document.getElementById("anterior").addEventListener("click", () => {
+        const i = orden.indexOf(actual);
+        if (i > 0) mostrarSeccion(orden[i - 1]);
+      });
+      document.getElementById("siguiente").addEventListener("click", () => {
+        const i = orden.indexOf(actual);
+        if (i < orden.length - 1) mostrarSeccion(orden[i + 1]);
+      });
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    botones.forEach(b => b.addEventListener("click", () => mostrarSeccion(b.dataset.seccion)));
+    mostrarSeccion("inicio");
+  </script>
+</body>
+</html>
